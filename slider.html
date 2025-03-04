@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botones con Active</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background-color: #3498db;
+            /* Azul inicial */
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            /* Azul más oscuro al pasar el cursor */
+        }
+
+        .btn.active {
+            animation: color-shadow-pulse 0.5s ease-in-out forwards;
+        }
+
+        /* Animación combinada de color y sombra */
+        @keyframes color-shadow-pulse {
+            0% {
+                background-color: #3498db;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+                transform: scale(1);
+            }
+
+            50% {
+                background-color: #2ecc71;
+                /* Verde de transición */
+                box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+                transform: scale(1.1);
+            }
+
+            100% {
+                background-color: #27ae60;
+                /* Verde final */
+                box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.4);
+                transform: scale(1.0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="button-container">
+        <button class="btn">Botón 1</button>
+        <button class="btn">Botón 2</button>
+        <button class="btn">Botón 3</button>
+        <button class="btn">Botón 4</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll(".btn");
+
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                // Remueve la clase "active" de todos los botones
+                buttons.forEach(btn => btn.classList.remove("active"));
+
+                // Agrega la clase "active" solo al botón clickeado
+                this.classList.add("active");
+            });
+        });
+    });
+
+</script>
+
+
+</html>

@@ -1,0 +1,1016 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * Copyright (c) 2014, All rights reserved.
+ * Stylesheet/Hoja de Estilos: styles
+ * Project/Projecto: Septiembre 2014 - 64A films.
+ * Author: Jesus Piedrahita, Mottif - jesus.piedrahita@mottif.com / www.mottif.com
+ *  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+/*Generales*/
+html,
+body {
+	height: 100%;
+	background-color: #071023;
+}
+a {
+	color: #ffffff;
+}
+p {
+	margin-bottom: 10px;
+}
+
+/*Contenedor principal*/
+.wrapper {
+	width: 100%;
+	min-height: 100%;
+	position: relative;
+	box-sizing: border-box;
+	color: #ffffff;
+	font-size: 1em;
+	/*overflow:hidden;*/
+}
+
+/*Home*/
+.wrapper.home {
+	background-image: url(../images/site/back_dos.png),
+		url(../images/site/back_uno.png);
+	background-repeat: repeat, repeat;
+}
+.wrapper.home section {
+	max-width: 615px;
+	margin: 0px auto;
+	text-align: center;
+	font-family: "Roboto Slab", serif;
+	font-weight: 300;
+	font-size: 1.8em;
+	letter-spacing: 0.08em;
+	line-height: 1.5em;
+	padding: 0px 0px 30px;
+	position: relative;
+	transition: top 0.5s ease;
+}
+.wrapper.home section h1 {
+	margin-bottom: 30px;
+}
+.wrapper.home section a.iniciar {
+	display: block;
+	width: 100px;
+	height: 97px;
+	margin: 30px auto 0px;
+	position: relative;
+	font-family: "Roboto Slab", serif;
+	font-weight: 700;
+	font-size: 14px;
+	box-sizing: border-box;
+	padding: 0px;
+	background-image: url(../images/site/iniciar.png);
+	background-position: top center;
+	background-repeat: no-repeat;
+	text-indent: -9999px;
+	transition: background-position 0.5s ease;
+}
+.wrapper.home section a.iniciar:hover {
+	background-position: bottom center;
+}
+
+/*Instrucciones*/
+.overlay {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	box-sizing: border-box;
+	z-index: 50;
+	background: none;
+	cursor: pointer;
+	font-size: 1em;
+}
+.instruction {
+	box-sizing: border-box;
+	background: #071023;
+	color: #ffffff;
+	font-family: "Josefin Slab", serif;
+	font-size: 2em;
+	letter-spacing: 0.07em;
+	width: 315px;
+	padding: 8px 10px 10px 50px;
+	position: absolute;
+	opacity: 0;
+}
+.instruction p {
+	font-weight: 600;
+	margin: 0px;
+}
+.instruction span.triangle {
+	display: block;
+	width: 26px;
+	height: 26px;
+	background: url(../images/site/tri.png) no-repeat center;
+	position: absolute;
+}
+.instruction span.num {
+	display: block;
+	width: 35px;
+	height: 35px;
+	overflow: hidden;
+	text-align: center;
+	background: url(../images/site/inst.png) center no-repeat;
+	font-weight: 700;
+	box-sizing: border-box;
+	padding: 10px 0px;
+	font-size: 0.85em;
+	position: absolute;
+	top: 8px;
+	left: 8px;
+}
+.instruction#one {
+	right: 20px;
+	top: 120px;
+	width: 296px;
+	transition: opacity 0.5s ease-in 1.2s;
+}
+.instruction#two {
+	right: 70px;
+	top: 50%;
+	width: 299px;
+	transition: opacity 0.5s ease-in 0.9s;
+}
+.instruction#three {
+	left: 30px;
+	bottom: 70px;
+	width: 269px;
+	transition: opacity 0.5s ease-in 0.6s;
+}
+.instruction#four {
+	left: 350px;
+	bottom: 70px;
+	width: 312px;
+	transition: opacity 0.5s ease-in 0.3s;
+}
+.instruction#five {
+	left: 350px;
+	bottom: 160px;
+	width: 229px;
+	transition: opacity 0.5s ease-in;
+}
+.instruction#one .triangle {
+	left: 50px;
+	top: -12px;
+}
+.instruction#two .triangle {
+	right: -12px;
+	top: 30px;
+}
+.instruction#three .triangle {
+	left: 50px;
+	bottom: -12px;
+}
+.instruction#four .triangle {
+	left: 50px;
+	bottom: -12px;
+}
+
+.overlay.visible {
+	background: rgba(0, 0, 0, 0.2);
+}
+.overlay.visible .instruction#one {
+	opacity: 1;
+	transition: opacity 0.5s ease-in;
+}
+.overlay.visible .instruction#two {
+	opacity: 1;
+	transition: opacity 0.5s ease-in 0.3s;
+}
+.overlay.visible .instruction#three {
+	opacity: 1;
+	transition: opacity 0.5s ease-in 0.6s;
+}
+.overlay.visible .instruction#four {
+	opacity: 1;
+	transition: opacity 0.5s ease-in 0.9s;
+}
+.overlay.visible .instruction#five {
+	opacity: 1;
+	transition: opacity 0.5s ease-in 1.2s;
+}
+
+/*Interna*/
+/*menu top (iconos)*/
+header {
+	width: 100%;
+	background-image: url(../images/site/back_dos.png),
+		url(../images/site/back_uno.png);
+	background-repeat: repeat, repeat;
+	box-sizing: border-box;
+	position: relative;
+	z-index: 10;
+	/*border: 1px solid transparent;*/
+	overflow: hidden;
+}
+.title {
+	position: absolute;
+	left: 20px;
+	top: 50%;
+	margin-top: -17px;
+	background: url(../images/site/logo.png) no-repeat center center;
+	text-indent: -9999px;
+	width: 290px;
+	height: 30px;
+}
+header ul {
+	width: 100%;
+	text-align: right;
+	margin: 20px 0px;
+	box-sizing: border-box;
+}
+header ul li {
+	display: inline-block;
+	vertical-align: middle;
+	text-align: left;
+	margin: 0px 10px;
+	position: relative;
+}
+header ul li a {
+	display: block;
+	font-family: "Roboto Slab", serif;
+	font-weight: 700;
+	font-size: 1.3em;
+	letter-spacing: 0.2em;
+}
+header ul li a#retos {
+	color: #2facc7;
+}
+header ul li a#afectos {
+	color: #ff655a;
+}
+header ul li a#triunfos {
+	color: #99cc8a;
+}
+header ul li a#obstaculos {
+	color: #f1435c;
+}
+header ul li a#viajes {
+	color: #48c5a4;
+}
+header ul li a#contexto {
+	color: #894c87;
+}
+header ul li a span {
+	display: inline-block;
+	vertical-align: middle;
+}
+header ul li a span.name {
+	width: 0px;
+	overflow: hidden;
+	margin-right: 5px;
+	transition: width 0.5s ease;
+}
+header ul li a#retos span.icon,
+header ul li a#afectos span.icon,
+header ul li a#triunfos span.icon,
+header ul li a#obstaculos span.icon,
+header ul li a#viajes span.icon,
+header ul li a#contexto span.icon {
+	width: 60px;
+	height: 60px;
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	margin: 0px;
+	transition: background-position 0.5s ease;
+}
+header ul li a#retos span.icon {
+	background-image: url(../images/site/retos.png);
+}
+header ul li a#afectos span.icon {
+	background-image: url(../images/site/afectos.png);
+}
+header ul li a#triunfos span.icon {
+	background-image: url(../images/site/triunfos.png);
+}
+header ul li a#obstaculos span.icon {
+	background-image: url(../images/site/obstaculos.png);
+}
+header ul li a#viajes span.icon {
+	background-image: url(../images/site/viajes.png);
+}
+header ul li a#contexto span.icon {
+	background-image: url(../images/site/contexto.png);
+}
+/*hover y active link*/
+header ul li a.activo span.name {
+	width: auto;
+	transition: width 0.5s ease;
+}
+header ul li a.activo#retos span.name {
+	width: 45px;
+}
+header ul li a.activo#afectos span.name {
+	width: 62px;
+}
+header ul li a.activo#triunfos span.name {
+	width: 70px;
+}
+headerullia.activo#obstaculosspan: .name {
+	width: 92px;
+}
+header ul li a.activo#viajes span.name {
+	width: 52px;
+}
+header ul li a.activo#contexto span.name {
+	width: 74px;
+}
+header ul li a:hover span.icon,
+header ul li a.activo span.icon {
+	transition: background-position 0.5s ease;
+	background-position: top center !important;
+}
+
+header ul li a span.tri {
+	display: block;
+	width: 30px;
+	height: 14px;
+	position: absolute;
+	bottom: -100%;
+	right: 15px;
+	transition: bottom 1s ease-out;
+}
+header ul li a#retos span.tri {
+	background: url(../images/site/tri_menu_1.png) no-repeat top center;
+}
+header ul li a#afectos span.tri {
+	background: url(../images/site/tri_menu_2.png) no-repeat top center;
+}
+header ul li a#triunfos span.tri {
+	background: url(../images/site/tri_menu_3.png) no-repeat top center;
+}
+header ul li a#obstaculos span.tri {
+	background: url(../images/site/tri_menu_4.png) no-repeat top center;
+}
+header ul li a#viajes span.tri {
+	background: url(../images/site/tri_menu_5.png) no-repeat top center;
+}
+header ul li a#contexto span.tri {
+	background: url(../images/site/tri_menu_6.png) no-repeat top center;
+}
+header ul li a.activo span.tri {
+	bottom: -20px;
+}
+
+/*iconos desactivados*/
+header ul li.lock a {
+	opacity: 0.4;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+	cursor: inherit;
+}
+header ul li.lock a:hover span.icon {
+	background-position: center bottom !important;
+}
+
+/*div contenido*/
+.content {
+	position: absolute;
+	height: 100%;
+	/*height: auto;*/
+	width: 100%;
+	left: 0px;
+	right: 0px;
+	top: 0;
+	box-sizing: border-box;
+	padding-top: 100px;
+}
+
+/*estilos generales para seccion left y right*/
+.left,
+.right {
+	display: inline-block;
+	vertical-align: top;
+	box-sizing: border-box;
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*seccion left*/
+.left {
+	width: 29.5%;
+	background-color: #ffffff;
+}
+/*seccion right*/
+.right {
+	width: 70%;
+	background-image: url(../images/site/back_dos.png);
+	background-repeat: repeat;
+	padding-bottom: 80px;
+}
+
+/*menu años*/
+#years {
+	box-sizing: border-box;
+	height: 100%;
+	width: 0%;
+	font-family: "Roboto Slab", serif;
+	font-weight: 300;
+	text-align: center;
+	font-size: 2em;
+	letter-spacing: 0.1em;
+	line-height: 1em;
+	overflow: hidden;
+	background: #071023;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+}
+#years.close {
+	overflow: auto;
+}
+#years li {
+	border-bottom: 1px solid #39404f;
+}
+#years li:last-child {
+	border: none;
+}
+#years li a {
+	display: block;
+	box-sizing: border-box;
+	padding: 6px 0px;
+	line-height: 0.7em;
+}
+#years li a:hover {
+	background-color: rgba(255, 255, 255, 0.06);
+}
+#years li a:active {
+	background-color: rgba(255, 255, 255, 0.31);
+}
+
+/*contenido texto left*/
+.text_years {
+	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	padding-bottom: 50px;
+}
+
+/*Menu inferior años*/
+.menu_years {
+	/* position: absolute; */
+	bottom: 0px;
+	height: 49px;
+	left: 0px;
+	right: 0px;
+	background: url(../images/site/back_uno.png) repeat top left;
+	font-family: "Josefin Slab", serif;
+	font-weight: 600;
+	font-size: 2.2em;
+	overflow: hidden;
+}
+.menu_years a {
+	display: inline-block;
+	vertical-align: middle;
+	box-sizing: border-box;
+	height: 100%;
+	position: relative;
+}
+.menu_years a#open_years {
+	width: 70%;
+	padding: 8px 0px 7px 50px;
+}
+.menu_years a#open_years span {
+	display: block;
+	width: 14px;
+	height: 14px;
+	position: absolute;
+	top: 50%;
+	margin-top: -7px;
+	left: 20px;
+	background: url(../images/site/mas.png) no-repeat center;
+	transition: transform 1s ease;
+}
+.menu_years a#open_years.close span {
+	transform: rotateZ(135deg);
+	transition: transform 1s ease;
+}
+.menu_years a#down_year,
+.menu_years a#up_year {
+	width: 15%;
+	border-left: 1px solid rgba(255, 255, 255, 0.2);
+	background-repeat: no-repeat, no-repeat;
+	transition: background-position 0.3s ease;
+	text-indent: -9999px;
+}
+.menu_years a#down_year {
+	background-image: url(../images/site/fdown.png),
+		url(../images/site/fdownh.png);
+	background-position: center, bottom center;
+}
+.menu_years a#up_year {
+	background-image: url(../images/site/fup.png), url(../images/site/fuph.png);
+	background-position: center, top center;
+}
+.menu_years a#down_year:hover,
+.menu_years a#up_year:hover {
+	background-position: center, center;
+	transition: background-position 0.3s ease;
+}
+/*boton inactivo*/
+.menu_years a#up_year.b_up_inact,
+.menu_years a#down_year.b_down_inact {
+	cursor: inherit;
+	opacity: 0.3;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+}
+.menu_years a#up_year.b_up_inact:hover {
+	background-position: center, top center;
+}
+.menu_years a#down_year.b_down_inact:hover {
+	background-position: center, bottom center;
+}
+
+/*Texto slide left*/
+.text_left {
+	box-sizing: border-box;
+	width: 100%;
+	text-align: center;
+	color: #000000;
+	font-size: 1em;
+	position: relative;
+	transition: top 0.5s ease;
+	top: 6%;
+}
+.text_left h1,
+.text_left h2,
+.text_left h3 {
+	width: 80%;
+	margin: 0px auto;
+	overflow: hidden;
+}
+.text_left h1 span,
+.text_left h2 span,
+.text_left h3 span {
+	display: block;
+}
+.text_left h2 span {
+	padding: 35px 0px 25px 0px;
+}
+.text_left h1 {
+	font-family: "Roboto Slab", serif;
+	font-weight: 300;
+	font-size: 11em;
+	transition: color 1s linear;
+	line-height: 0.9em;
+}
+
+.text_left h1 span {
+	line-height: 0.5em;
+	padding: 50px 0px;
+}
+.text_left h2 {
+	font-family: "Roboto Slab", serif;
+	font-weight: 300;
+	font-size: 3em;
+	line-height: 1em;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	transition: border-color 1s ease, color 1s linear;
+
+	border-top-color: black;
+	border-bottom-color: black;
+}
+.text_left h2 big {
+	font-family: "Roboto Slab", serif;
+	font-weight: 300;
+	font-size: 1.5em;
+}
+.text_left h3 {
+	font-family: "Roboto Slab", serif;
+	font-weight: 300;
+	font-size: 1.8em;
+	transition: color 1s linear;
+}
+.text_left .logo {
+	display: block;
+	margin: 30px auto 8px;
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	box-sizing: border-box;
+	background-image: url(../images/site/logos.png);
+	background-repeat: no-repeat;
+	background-position: center 0px;
+	transition: background-position 1s ease;
+}
+
+/*flechas slide left y right*/
+#left,
+#right {
+	z-index: 15;
+	position: absolute;
+	top: 50%;
+	margin-top: -34px;
+	width: 50px;
+	height: 68px;
+	text-indent: -9999px;
+	transition: background-color 0.5s ease;
+}
+#left {
+	left: 0px;
+	background: url(../images/site/left.png) no-repeat center
+		rgba(255, 255, 255, 0.2);
+}
+#right {
+	right: 0px;
+	background: url(../images/site/right.png) no-repeat center
+		rgba(255, 255, 255, 0.2);
+}
+#left:hover,
+#right:hover {
+	background-color: rgba(255, 255, 255, 0.4);
+}
+
+/*ocultar/mostrar texto*/
+#only_image {
+	box-sizing: border-box;
+	z-index: 15;
+	position: absolute;
+	display: block;
+	width: 120px;
+	padding: 25px 0px 6px;
+	text-align: center;
+	bottom: 0px;
+	left: 50%;
+	margin-left: -60px;
+	font-family: "Roboto Slab", serif;
+	font-weight: 400;
+	letter-spacing: 0.08em;
+	font-size: 1.15em;
+	background: url(../images/site/t.png) no-repeat center 7px
+		rgba(255, 255, 255, 0.2);
+	transition: background-color 0.5s ease, background-position 0.5s ease,
+		bottom 1s ease;
+}
+#only_image:hover {
+	background-color: rgba(255, 255, 255, 0.4);
+}
+#only_image.visible {
+	background-position: center -79px;
+}
+
+/*div textura*/
+.textura {
+	z-index: 10;
+	position: absolute;
+	left: 0px;
+	top: 10px;
+	right: 0px;
+	bottom: 0px;
+	box-sizing: border-box;
+	background-image: url(../images/site/back_tres.png);
+	background-repeat: repeat;
+}
+
+/*Texto slide right*/
+.text_right {
+	width: 60%;
+	max-width: 600px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 1em;
+	letter-spacing: 0.08em;
+	position: relative;
+	z-index: 15;
+	transition: top 0.5s ease;
+}
+.date {
+	border: 1px solid #ffffff;
+	min-width: 150px;
+	margin: 0px auto;
+	display: inline-block;
+	box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2),
+		inset 0px 0px 2px rgba(0, 0, 0, 0.2);
+}
+.date h2 {
+	font-family: "Roboto Slab", serif;
+	font-weight: 300;
+	font-size: 9em;
+	overflow: hidden;
+}
+.date h3 {
+	text-transform: uppercase;
+	font-family: "Roboto Slab", serif;
+	font-weight: 400;
+	font-size: 2.2em;
+	border-top: 1px solid #ffffff;
+	box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.2),
+		inset 0px 1px 1px rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+}
+.date h2 span,
+.date h3 span,
+.desc p {
+	display: block;
+}
+.desc {
+	border-top: 1px solid rgba(255, 255, 255, 0.3);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	margin: 40px auto 0px;
+	font-family: "Roboto Slab", serif;
+	font-weight: 400;
+	font-size: 1.8em;
+	overflow: hidden;
+}
+.desc p {
+	padding: 50px 0px 40px;
+}
+.color,
+.image {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+}
+.color {
+	background-image: url(../images/site/back_dos.png);
+	background-repeat: repeat;
+	transition: background-color 0s linear 1s;
+}
+.image {
+	top: 10px;
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: cover;
+}
+
+/*Estilo para cada item de menu*/
+/*Retos*/
+.text_left.retos {
+	color: #2eacc6;
+}
+.text_left.retos h2 {
+	border-top-color: #2eacc6;
+	border-bottom-color: #2eacc6;
+}
+.text_left.retos .logo {
+	background-position: center 0px;
+}
+.right.retos .color,
+.right.retos {
+	background-color: #2facc7;
+}
+
+/*Afectos*/
+.text_left.afectos {
+	color: #ff6559;
+}
+.text_left.afectos h2 {
+	border-top-color: #ff6559;
+	border-bottom-color: #ff6559;
+}
+.text_left.afectos .logo {
+	background-position: center -70px;
+}
+.right.afectos .color,
+.right.afectos {
+	background-color: #ff655a;
+}
+
+/*Triunfos*/
+.text_left.triunfos {
+	color: #99cc8a;
+}
+.text_left.triunfos h2 {
+	border-top-color: #99cc8a;
+	border-bottom-color: #99cc8a;
+}
+.text_left.triunfos .logo {
+	background-position: center -140px;
+}
+.right.triunfos .color,
+.right.triunfos {
+	background-color: #92ca8f;
+}
+
+/*Obstaculos*/
+.text_left.obstaculos {
+	color: #f1435c;
+}
+.text_left.obstaculos h2 {
+	border-top-color: #f1435c;
+	border-bottom-color: #f1435c;
+}
+.text_left.obstaculos .logo {
+	background-position: center -210px;
+}
+.right.obstaculos .color,
+.right.obstaculos {
+	background-color: #f1435c;
+}
+
+/*Viajes*/
+.text_left.viajes {
+	color: #47c5a4;
+}
+.text_left.viajes h2 {
+	border-top-color: #47c5a4;
+	border-bottom-color: #47c5a4;
+}
+.text_left.viajes .logo {
+	background-position: center -280px;
+}
+.right.viajes .color,
+.right.viajes {
+	background-color: #49c5a4;
+}
+
+/*Contexto*/
+.text_left.contexto {
+	color: #884c86;
+}
+.text_left.contexto h2 {
+	border-top-color: #884c86;
+	border-bottom-color: #884c86;
+}
+.text_left.contexto .logo {
+	background-position: center -350px;
+}
+.right.contexto .color,
+.right.contexto {
+	background-color: #894c87;
+}
+
+.text_title h2 {
+	color: blue;
+	font-family: "Roboto Slab", serif;
+	font-weight: 600;
+	font-size: 2.5rem;
+	transition: color 1s linear;
+	line-height: 0.9em;
+}
+
+/* .text_title h3 {
+	border-top-color: blue;
+	display: block;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+} */
+/* .text_title h3 span {
+	padding: 35px 0px 25px 0px;
+	color: blue;
+	font-weight: 600;
+	font-size: 1.5rem;
+} */
+
+.header-text {
+	font-size: 2.5rem;
+	color: #333;
+	margin-bottom: 5px;
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 20px;
+	text-align: center;
+	/* font-size: 100px; */
+	margin: 10px 0;
+	color: #1a237e;
+	font-weight: bold;
+}
+
+.text_title > h3 {
+	text-align: center;
+}
+
+.subtitle {
+	font-size: 18px;
+	color: #1a237e;
+	margin-top: 5px;
+	font-weight: bold;
+}
+
+hr {
+	border: 1px solid #ddd;
+	margin: 10px 0;
+}
+
+.opciones {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.dots-container {
+	position: absolute;
+	bottom: 60px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	gap: 10px;
+}
+
+.dot {
+	width: 10px;
+	height: 10px;
+	background-color: rgba(255, 255, 255, 0.5);
+	border-radius: 50%;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.dot.active {
+	background-color: rgba(255, 255, 255, 1);
+}
+
+.aniossubtitulo {
+	border-top-style: solid;
+	border-top-width: 1px;
+	/* border-bottom-style: solid; */
+	border-top-color: #1a237e;
+	/* border: 1px solid; */
+	padding: 5px 50px;
+	/* cursor: pointer; */
+	/* background-color: white; */
+	color: #1a237e;
+}
+
+.period-selector {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin: 20px 0;
+}
+
+.period-button {
+	flex: 1 1 calc(33.333% - 20px);
+	text-align: center;
+	border: 1px solid #1a237e;
+	padding: 5px 10px;
+	cursor: pointer;
+	background-color: white;
+	color: #1a237e;
+	font-size: 16px;
+}
+
+.period-button.active {
+	background-color: #1a237e;
+	color: white;
+}
+
+.year-selector {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin: 20px 0;
+}
+
+.year-button {
+	padding: 5px 10px;
+	cursor: pointer;
+	background-color: transparent;
+	color: #666;
+	border: none;
+}
+
+.year-button.active {
+	color: #1a237e;
+	font-weight: bold;
+}
+
+.instructions {
+	font-size: 12px;
+	color: #666;
+	margin: 15px 0;
+}
+
+.logo {
+	margin-top: 20px;
+}
+
+.logo img {
+	height: 50px;
+}
+
+/*Diseño responsive width menor a 768px
+@media screen and (max-width: 769px){
+	header{
+		padding-top: 40px;
+	}
+	.title{
+		margin-top:0px;
+		top:10px;
+		left:50%;
+		margin-left:-142px;
+	}
+	.content{
+		padding-top:140px;
+	}
+	.left,.right{width:100%;height:100%;}
+}*/

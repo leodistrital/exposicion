@@ -1,0 +1,765 @@
+let contador = 0;
+let trabajo = 0;
+let decada = 0;
+let indextrabajo = 0;
+let jsonData = [];
+let ganadoresDATA = [];
+let aniosDATA = [];
+
+// Cargar el archivo JSON desde una URL al iniciar la página
+
+fetch("ganadores.json")
+	.then((response) => response.json())
+	.then((data) => {
+		jsonData = data;
+		console.log("Datos JSON cargados:", jsonData);
+	})
+	.catch((error) => console.error("Error al cargar el archivo JSON:", error));
+
+// Función para incrementar el contador
+function incrementarContador() {
+	contador++; // Modificación de la variable global
+	$("#resultado").text(`Contador incrementado: ${contador}`);
+	console.log(contador);
+}
+
+// Función para decrementar el contador
+function decrementarContador() {
+	contador--; // Modificación de la variable global
+	$("#resultado").text(`Contador decrementado: ${contador}`);
+}
+
+// Función para mostrar el valor actual del contador
+function mostrarContador() {
+	$("#resultado").text(`Valor actual del contador: ${contador}`);
+}
+
+function selecDecada(decada) {
+	// console.log(decada);
+	ganadoresDATA = filtrarPorPropiedad(jsonData, "decada", decada);
+	// console.log(ganadoresDATA);
+	aniosDATA = ganadoresDATA.map((item) => {
+		// console.log(item["anio"]);
+		return item["anio"];
+	});
+	aniosDATA = [...new Set(aniosDATA)];
+	// console.log(aniosDATA);
+	actualizarAnios(aniosDATA);
+	actualizarActivo(decada, "period-selector", "period-button");
+}
+
+function actualizarAnios(anios) {
+	const selector = document.getElementById("yearSelector");
+	// console.log(selector);
+	//Eliminar todos los elementos hijos
+	while (selector.firstChild) {
+		selector.removeChild(selector.firstChild);
+	}
+	// Agregar nuevos botones basados en el array de años
+	anios.forEach((anio) => {
+		const button = document.createElement("button");
+		button.className = "year-button";
+		button.textContent = anio;
+		button.dataset.index = anio;
+		// Añadir controlador de eventos para manejar clics
+		button.addEventListener("click", () => {
+			console.log(`Año seleccionado: ${anio}`);
+			actualizarActivo(anio, "yearSelector", "year-button");
+			ganadoresporanio = filtrarPorPropiedad(jsonData, "anio", anio);
+			console.log({ ganadoresporanio });
+			// Aquí puedes agregar cualquier lógica adicional que necesites
+		});
+		selector.appendChild(button);
+	});
+}
+
+function actualizarActivo(index, padre, nodo) {
+	// console.log({ index, padre, nodo });
+	const selector = document.getElementById(padre);
+	const botones = selector.getElementsByClassName(nodo);
+	// Recorrer todos los botones y eliminar la clase "active"
+	for (let i = 0; i < botones.length; i++) {
+		botones[i].classList.remove("active");
+	}
+	const boton = document.querySelector('button[data-index="' + index + '"]');
+	boton.classList.add("active");
+}
+
+// function incrementarContador() {
+// 	contador++; // Acceso y modificación de la variable global
+// 	console.log(`Contador incrementado: ${contador}`);
+// }
+
+// // Función que decrementa el contador
+// function decrementarContador() {
+// 	contador--; // Acceso y modificación de la variable global
+// 	console.log(`Contador decrementado: ${contador}`);
+// }
+
+// // Función que muestra el valor actual del contador
+// function mostrarContador() {
+// 	console.log(`Valor actual del contador: ${contador}`);
+// }
+
+function filtrarPorPropiedad(jsonData = jsonData, propiedad, valor) {
+	// console.log(jsonData);
+	return jsonData.ganadores.filter((item) => {
+		// Verifica si la propiedad existe en el objeto y si su valor coincide
+		return item.hasOwnProperty(propiedad) && item[propiedad] === valor;
+	});
+}
+
+$(document).ready(function (e) {
+	console.log(contador); // Acceso a la variable global
+
+	//cargar los primero datos
+	datos_inicio(
+		"retos",
+		"1985",
+		"mayo",
+		"26",
+		"EDICIÓN 9",
+		"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has  been the industry's standard                            dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled  it to make a type specimen   book. It has survived not only five centuries, but also the leap into electronic                             typesetting, remaining essentially    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing                             Lorem Ipsum passages, and more                             recently with desktop publishing software like  ldus PageMaker including versions of Lorem                             Ipsum.",
+		"https://placehold.co/800?text=Imagen+3"
+	);
+
+	/*Click arriba, abajo, izquierda, derecha, menu categoria*/
+
+	//click arriba
+	$("#down_year").on("click", function (e) {
+		e.preventDefault();
+		slide_down(
+			"viajes",
+			"1814",
+			"noviembre",
+			"21",
+			"35",
+			"texto prueba",
+			"https://placehold.co/800?text=Imagen+5"
+		);
+	});
+	//click abajo
+	$("#up_year").on("click", function (e) {
+		e.preventDefault();
+		slide_up(
+			"afectos",
+			"1804",
+			"julio",
+			"18",
+			"15",
+			"texto prueba dos",
+			"images/prueba/imagen_prueba.jpg"
+		);
+	});
+	//click izquierda
+	$("#left").on("click", function (e) {
+		e.preventDefault();
+		slide_left(
+			"triunfos",
+			"1850",
+			"agosto",
+			"14",
+			"25",
+			"texto prueba tres",
+			"https://placehold.co/800?text=Imagen+1"
+		);
+		incrementarContador();
+	});
+	//click derecha
+	$("#right").on("click", function (e) {
+		e.preventDefault();
+		slide_right(
+			"obstaculos",
+			"1840",
+			"enero",
+			"10",
+			"18",
+			"texto prueba cuatro",
+			"https://placehold.co/800?text=Imagen+8"
+		);
+	});
+	//clicl menu categoria
+	$("header a").on("click", function (e) {
+		e.preventDefault();
+		slide_left(
+			$(this).attr("id"),
+			"1850",
+			"agosto",
+			"14",
+			"25",
+			"El 6 de abril de 1805 parte de París para Italia en compañía de Simón Rodríguez y Fernando del Toro, primo hermano de su esposa. En un largo viaje a pié en busca de conocimiento, su tutor le enseña en profundidad los principios de la Ilustración y el mundo clásico. Se entusiasma sobre todo con Rousseau y Voltaire. Visita Venecia, Ferrara, Bolonia, Florencia, Perusa y Roma.",
+			""
+		);
+	});
+
+	/*abrir menu años*/
+	// $("#open_years").on("click", function (e) {
+	// 	open_years(e);
+	// });
+	/*mostrar solo imagen*/
+	$("#only_image").on("click", function (e) {
+		only_image(e);
+	});
+
+	/*centrar verticalmente*/
+	centrar(".wrapper.home", ".wrapper.home > section");
+	// centrar(".left", ".text_title");
+	// centrar(".text_years", ".text_left");
+	centrar(".right", ".text_right");
+
+	//Mostrar Quitar instrucciones
+	instructions_in();
+	// $(".overlay").on("click", function () {
+	instructions_out();
+	// });
+});
+$(window).resize(function (e) {
+	/*centrar verticalmente*/
+	centrar(".wrapper.home", ".wrapper.home > section");
+	centrar(".text_years", ".text_left");
+	centrar(".right", ".text_right");
+});
+// $(window).load(function (e) {
+// 	//Detectar version internet explorer
+// 	var detect = detectIE();
+// 	if (detect != false) {
+// 		if (detect < 10) {
+// 			alert(
+// 				"Para una correcta visualización de la página debe usar Internet Explorer 10 o superior, u otro navegador."
+// 			);
+// 		}
+// 	}
+// });
+
+/*funcion para cargar los primeros datos*/
+function datos_inicio(categoria, anio, mes, dia, edad, texto, img) {
+	var i_anio = ".text_left h1 span",
+		i_mes = ".date h3 span",
+		i_dia = ".date h2 span",
+		i_edad = ".text_left h2 span",
+		i_texto = ".desc",
+		i_color = ".color",
+		i_img = ".image",
+		i_textura = ".textura",
+		i_nom_cate = ".text_left h3 span";
+	icon_category(categoria);
+	$(i_anio).html(anio);
+	$(i_mes).html(mes);
+	$(i_dia).html(dia);
+	$(i_edad).html("<big>" + edad + "</big><br>a&ntilde;os");
+	$(i_texto + " p").html(texto);
+	$(i_nom_cate).html(categoria);
+	if (img == "") {
+		$(i_img).css("background-image", "none");
+		$("#only_image").css("bottom", "-100%");
+		$(i_textura).css("display", "none");
+	} else {
+		$(i_img).css("background-image", "url(" + img + ")");
+		$("#only_image").css("bottom", "0");
+		$(i_textura).css("display", "block");
+	}
+}
+
+/*funcion mostrar ocultar instrucciones*/
+function instructions_in() {
+	$(".overlay").addClass("visible");
+}
+function instructions_out() {
+	$(".overlay").removeClass("visible");
+	$(".overlay").css("transition", "background-color 0.5s ease 1.2s");
+	$(".overlay").css({ display: "none" });
+	// setTimeout(function () {
+	// 	$(".overlay").css({ display: "none" });
+	// }, 1500);
+}
+
+/*funcion seleccionar item menu*/
+// function menu_item(e, obj) {
+// 	e.preventDefault();
+// 	$("header a").removeClass("activo");
+// 	$(obj).addClass("activo");
+// }
+
+/*funcion centrar verticalmente*/
+function centrar(parent, elem) {
+	var h_parent = $(parent).height(),
+		h_elem = $(elem).height(),
+		total = 0;
+	if (h_elem > h_parent) {
+		$(elem).css({ top: total + "px", transition: "top 0.5s ease" });
+	} else {
+		total = h_parent / 2 - h_elem / 2;
+		$(elem).css({ top: total + "px", transition: "top 0.5s ease" });
+	}
+}
+
+/*funcion para abrir menu años*/
+// function open_years(e) {
+// 	e.preventDefault();
+// 	if ($("#open_years").hasClass("close")) {
+// 		$("#years").animate({ width: "0%" });
+// 		$(".text_years").animate(
+// 			{ width: "100%", marginLeft: "0" },
+// 			{ queue: false }
+// 		);
+// 		$("#years").removeClass("close");
+// 		$("#open_years").removeClass("close");
+// 	} else {
+// 		$("#years").animate({ width: "20%" });
+// 		$(".text_years").animate(
+// 			{ width: "80%", marginLeft: "20%" },
+// 			{ queue: false }
+// 		);
+// 		$("#years").addClass("close");
+// 		$("#open_years").addClass("close");
+// 	}
+// }
+
+/*funcion mostrar solo imagen*/
+function only_image(e) {
+	e.preventDefault();
+	if ($(".text_right").hasClass("visible")) {
+		$(".text_right").css({
+			opacity: 1,
+			"z-index": 15,
+			transition: "opacity 0.5s ease 0.1s, z-index 0.1s linear",
+		});
+		$(".textura").css({
+			opacity: 1,
+			"z-index": 10,
+			transition: "opacity 0.5s ease 0.1s, z-index 0.1s linear",
+		});
+		$(".text_right,#only_image").removeClass("visible");
+		$("#only_image").html("ocultar texto");
+	} else {
+		$(".text_right").css({
+			opacity: 0,
+			"z-index": 0,
+			transition: "opacity 0.5s ease, z-index 0.1s linear 0.5s",
+		});
+		$(".textura").css({
+			opacity: 0,
+			"z-index": 0,
+			transition: "opacity 0.5s ease, z-index 0.1s linear 0.5s",
+		});
+		$(".text_right,#only_image").addClass("visible");
+		$("#only_image").html("Comentrio del Jurado");
+	}
+}
+
+/*efectos slide down*/
+function slide_down(categoria, anio, mes, dia, edad, texto, img) {
+	var i_anio = ".text_left h1 span",
+		i_mes = ".date h3 span",
+		i_dia = ".date h2 span",
+		i_edad = ".text_left h2 span",
+		i_texto = ".desc",
+		i_color = ".color",
+		i_img = ".image",
+		i_textura = ".textura",
+		i_nom_cate = ".text_left h3 span";
+	$(".text_right").css({
+		opacity: 1,
+		"z-index": 15,
+		transition: "opacity 0.5s ease 0.1s, z-index 0.1s linear",
+	});
+	$(".textura").css({
+		opacity: 1,
+		"z-index": 10,
+		transition: "opacity 0.5s ease 0.1s, z-index 0.1s linear",
+	});
+	$(".text_right,#only_image").removeClass("visible");
+	$("#only_image").html("ocultar texto");
+	/*Ocultar items*/
+	$(i_anio + "," + i_mes + "," + i_dia + "," + i_edad + "," + i_nom_cate).css(
+		{
+			transform: "translate(0px,-100%)",
+			visibility: "hidden",
+			transition: "transform 0.5s ease, visibility 0s linear 0.5s",
+		}
+	);
+	$(i_color + "," + i_img + "," + i_textura).css({
+		right: "100%",
+		transition: "right 1s ease, background-color 0s linear 1s",
+	});
+	icon_category(categoria);
+	$(i_texto).animate({ height: "toggle" }, 500);
+	/*Cargar datos en items*/
+	setTimeout(function () {
+		$(
+			i_anio + "," + i_mes + "," + i_dia + "," + i_edad + "," + i_nom_cate
+		).css({
+			transform: "translate(0px,100%)",
+			transition: "transform 0s linear",
+		});
+		$(i_anio).html(anio);
+		$(i_mes).html(mes);
+		$(i_dia).html(dia);
+		$(i_edad).html("<big>" + edad + "</big><br>a&ntilde;os");
+		$(i_texto + " p").html(texto);
+		$(i_nom_cate).html(categoria);
+	}, 500);
+	setTimeout(function () {
+		$(i_color + "," + i_img + "," + i_textura).css({
+			visibility: "hidden",
+			right: "0",
+			transition: "right 0s linear",
+		});
+		$(i_img + "," + i_textura).css("opacity", 0);
+		if (img == "") {
+			$(i_img).css("background-image", "none");
+			$("#only_image").css("bottom", "-100%");
+			$(i_textura).css("display", "none");
+		} else {
+			$(i_img).css("background-image", "url(" + img + ")");
+			$("#only_image").css("bottom", "0");
+			$(i_textura).css("display", "block");
+		}
+	}, 1000);
+	/*Mostrar items*/
+	setTimeout(function () {
+		$(
+			i_anio + "," + i_mes + "," + i_dia + "," + i_edad + "," + i_nom_cate
+		).css({
+			transform: "translate(0px,0%)",
+			visibility: "visible",
+			transition: "transform 0.5s ease",
+		});
+		$(i_texto).animate({ height: "toggle" }, 500);
+	}, 550);
+	setTimeout(function () {
+		$(i_color + "," + i_img + "," + i_textura).css({
+			visibility: "visible",
+		});
+		$(i_img + "," + i_textura).css({
+			opacity: 1,
+			transition: "opacity 0.8s ease-in",
+		});
+		// centrar(".text_years", ".text_left");
+		// centrar(".right", ".text_right");
+	}, 1050);
+}
+
+/*efectos slide up*/
+function slide_up(categoria, anio, mes, dia, edad, texto, img) {
+	var i_anio = ".text_left h1 span",
+		i_mes = ".date h3 span",
+		i_dia = ".date h2 span",
+		i_edad = ".text_left h2 span",
+		i_texto = ".desc",
+		i_color = ".color",
+		i_img = ".image",
+		i_textura = ".textura",
+		i_nom_cate = ".text_left h3 span";
+	$(".text_right").css({
+		opacity: 1,
+		"z-index": 15,
+		transition: "opacity 0.5s ease 0.1s, z-index 0.1s linear",
+	});
+	$(".textura").css({
+		opacity: 1,
+		"z-index": 10,
+		transition: "opacity 0.5s ease 0.1s, z-index 0.1s linear",
+	});
+	$(".text_right,#only_image").removeClass("visible");
+	$("#only_image").html("ocultar texto");
+	/*Ocultar items*/
+	$(i_anio + "," + i_mes + "," + i_dia + "," + i_edad + "," + i_nom_cate).css(
+		{
+			transform: "translate(0px,100%)",
+			visibility: "hidden",
+			transition: "transform 0.5s ease, visibility 0s linear 0.5s",
+		}
+	);
+	$(i_color + "," + i_img + "," + i_textura).css({
+		left: "100%",
+		transition: "left 1s ease, background-color 0s linear 1s",
+	});
+	icon_category(categoria);
+	$(i_texto).animate({ height: "toggle" }, 500);
+	/*Cargar datos en items*/
+	setTimeout(function () {
+		$(
+			i_anio + "," + i_mes + "," + i_dia + "," + i_edad + "," + i_nom_cate
+		).css({
+			transform: "translate(0px,-100%)",
+			transition: "transform 0s linear",
+		});
+		$(i_anio).html(anio);
+		$(i_mes).html(mes);
+		$(i_dia).html(dia);
+		$(i_edad).html("<big>" + edad + "</big><br>a&ntilde;os");
+		$(i_texto + " p").html(texto);
+		$(i_nom_cate).html(categoria);
+	}, 500);
+	setTimeout(function () {
+		$(i_color + "," + i_img + "," + i_textura).css({
+			visibility: "hidden",
+			left: "0",
+			transition: "left 0s linear",
+		});
+		$(i_img + "," + i_textura).css("opacity", 0);
+		if (img == "") {
+			$(i_img).css("background-image", "none");
+			$("#only_image").css("bottom", "-100%");
+			$(i_textura).css("display", "none");
+		} else {
+			$(i_img).css("background-image", "url(" + img + ")");
+			$("#only_image").css("bottom", "0");
+			$(i_textura).css("display", "block");
+		}
+	}, 1000);
+	/*Mostrar items*/
+	setTimeout(function () {
+		$(
+			i_anio + "," + i_mes + "," + i_dia + "," + i_edad + "," + i_nom_cate
+		).css({
+			transform: "translate(0px,0%)",
+			visibility: "visible",
+			transition: "transform 0.5s ease",
+		});
+		$(i_texto).animate({ height: "toggle" }, 500);
+	}, 550);
+	setTimeout(function () {
+		$(i_color + "," + i_img + "," + i_textura).css({
+			visibility: "visible",
+		});
+		$(i_img + "," + i_textura).css({
+			opacity: 1,
+			transition: "opacity 0.8s ease-in",
+		});
+		// centrar(".text_years", ".text_left");
+		// centrar(".right", ".text_right");
+	}, 1050);
+}
+
+/*efectos slide left*/
+function slide_left(categoria, anio, mes, dia, edad, texto, img) {
+	var i_anio = ".text_left h1 span",
+		i_mes = ".date h3 span",
+		i_dia = ".date h2 span",
+		i_edad = ".text_left h2 span",
+		i_texto = ".desc",
+		i_color = ".color",
+		i_img = ".image",
+		i_textura = ".textura",
+		i_nom_cate = ".text_left h3 span";
+
+	$(".text_right").css({
+		opacity: 1,
+		"z-index": 15,
+		transition: "opacity 0.5s ease 0.1s, z-index 0.1s linear",
+	});
+
+	$(".textura").css({
+		opacity: 1,
+		"z-index": 10,
+		transition: "opacity 0.5s ease 0.1s, z-index 0.1s linear",
+	});
+	$(".text_right,#only_image").removeClass("visible");
+	$("#only_image").html("ocultar texto");
+	/*Ocultar items*/
+	$(i_mes + "," + i_dia).css({
+		transform: "translate(0px,-100%)",
+		visibility: "hidden",
+		transition: "transform 0.5s ease, visibility 0s linear 0.5s",
+	});
+
+	$(i_color + "," + i_img + "," + i_textura).css({
+		right: "100%",
+		transition: "right 1s ease, background-color 0s linear 1s",
+	});
+	// icon_category(categoria);
+	$(i_texto).animate({ height: "toggle" }, 500);
+
+	/*Cargar datos en items*/
+	setTimeout(function () {
+		$(i_mes + "," + i_dia).css({
+			transform: "translate(0px,100%)",
+			transition: "transform 0s linear",
+		});
+		$(i_anio).html(anio);
+		$(i_mes).html(mes);
+		$(i_dia).html(dia);
+		$(i_edad).html("<big>" + edad + "</big><br>a&ntilde;os");
+		$(i_texto + " p").html(texto);
+		$(i_nom_cate).html(categoria);
+	}, 500);
+
+	setTimeout(function () {
+		$(i_color + "," + i_img + "," + i_textura).css({
+			visibility: "hidden",
+			right: "0",
+			transition: "right 0s linear",
+		});
+		$(i_img + "," + i_textura).css("opacity", 0);
+		if (img == "") {
+			$(i_img).css("background-image", "none");
+			$("#only_image").css("bottom", "-100%");
+			$(i_textura).css("display", "none");
+		} else {
+			$(i_img).css("background-image", "url(" + img + ")");
+			$("#only_image").css("bottom", "0");
+			$(i_textura).css("display", "block");
+		}
+	}, 1000);
+
+	/*Mostrar items*/
+	setTimeout(function () {
+		$(i_mes + "," + i_dia).css({
+			transform: "translate(0px,0%)",
+			visibility: "visible",
+			transition: "transform 0.5s ease",
+		});
+		$(i_texto).animate({ height: "toggle" }, 500);
+	}, 550);
+	setTimeout(function () {
+		$(i_color + "," + i_img + "," + i_textura).css({
+			visibility: "visible",
+		});
+		$(i_img + "," + i_textura).css({
+			opacity: 1,
+			transition: "opacity 0.8s ease-in",
+		});
+		// centrar(".text_years", ".text_left");
+		// centrar(".right", ".text_right");
+	}, 1050);
+}
+
+/*efectos slide right*/
+function slide_right(categoria, anio, mes, dia, edad, texto, img) {
+	var i_anio = ".text_left h1 span",
+		i_mes = ".date h3 span",
+		i_dia = ".date h2 span",
+		i_edad = ".text_left h2 span",
+		i_texto = ".desc",
+		i_color = ".color",
+		i_img = ".image",
+		i_textura = ".textura",
+		i_nom_cate = ".text_left h3 span";
+	$(".text_right").css({
+		opacity: 1,
+		"z-index": 15,
+		transition: "opacity 0.5s ease 0.1s, z-index 0.1s linear",
+	});
+	$(".textura").css({
+		opacity: 1,
+		"z-index": 10,
+		transition: "opacity 0.5s ease 0.1s, z-index 0.1s linear",
+	});
+	$(".text_right,#only_image").removeClass("visible");
+	$("#only_image").html("ocultar texto");
+	/*Ocultar items*/
+	$(i_mes + "," + i_dia).css({
+		transform: "translate(0px,100%)",
+		visibility: "hidden",
+		transition: "transform 0.5s ease, visibility 0s linear 0.5s",
+	});
+	$(i_color + "," + i_img + "," + i_textura).css({
+		left: "100%",
+		transition: "left 1s ease, background-color 0s linear 1s",
+	});
+	icon_category(categoria);
+	$(i_texto).animate({ height: "toggle" }, 500);
+	/*Cargar datos en items*/
+	setTimeout(function () {
+		$(i_mes + "," + i_dia).css({
+			transform: "translate(0px,-100%)",
+			transition: "transform 0s linear",
+		});
+		$(i_anio).html(anio);
+		$(i_mes).html(mes);
+		$(i_dia).html(dia);
+		$(i_edad).html("<big>" + edad + "</big><br>a&ntilde;os");
+		$(i_texto + " p").html(texto);
+		$(i_nom_cate).html(categoria);
+	}, 500);
+	setTimeout(function () {
+		$(i_color + "," + i_img + "," + i_textura).css({
+			visibility: "hidden",
+			left: "0",
+			transition: "left 0s linear",
+		});
+		$(i_img + "," + i_textura).css("opacity", 0);
+		if (img == "") {
+			$(i_img).css("background-image", "none");
+			$("#only_image").css("bottom", "-100%");
+			$(i_textura).css("display", "none");
+		} else {
+			$(i_img).css("background-image", "url(" + img + ")");
+			$("#only_image").css("bottom", "0");
+			$(i_textura).css("display", "block");
+		}
+	}, 1000);
+	/*Mostrar items*/
+	setTimeout(function () {
+		$(i_mes + "," + i_dia).css({
+			transform: "translate(0px,0%)",
+			visibility: "visible",
+			transition: "transform 0.5s ease",
+		});
+		$(i_texto).animate({ height: "toggle" }, 500);
+	}, 550);
+	setTimeout(function () {
+		$(i_color + "," + i_img + "," + i_textura).css({
+			visibility: "visible",
+		});
+		$(i_img + "," + i_textura).css({
+			opacity: 1,
+			transition: "opacity 0.8s ease-in",
+		});
+		// centrar(".text_years", ".text_left");
+		centrar(".right", ".text_right");
+	}, 1050);
+}
+
+/*funcion cambiar icono y colores de categoria*/
+function icon_category(category) {
+	var i_left = ".text_left",
+		i_right = ".right";
+	$(i_left + "," + i_right).removeClass(
+		"retos afectos triunfos obstaculos viajes contexto"
+	);
+	$(i_left + "," + i_right).addClass(category);
+
+	// $("header a").removeClass("activo");
+	// if (category == "retos") {
+	// 	$("#retos").addClass("activo");
+	// }
+	// if (category == "afectos") {
+	// 	$("#afectos").addClass("activo");
+	// }
+	// if (category == "triunfos") {
+	// 	$("#triunfos").addClass("activo");
+	// }
+	// if (category == "obstaculos") {
+	// 	$("#obstaculos").addClass("activo");
+	// }
+	// if (category == "viajes") {
+	// 	$("#viajes").addClass("activo");
+	// }
+	// if (category == "contexto") {
+	// 	$("#contexto").addClass("activo");
+	// }
+}
+
+/*detectar internet explorer*/
+// function detectIE() {
+// 	var ua = window.navigator.userAgent;
+// 	var msie = ua.indexOf("MSIE ");
+// 	var trident = ua.indexOf("Trident/");
+// 	if (msie > 0) {
+// 		// IE 10 or older => return version number
+// 		return parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)), 10);
+// 	}
+// 	if (trident > 0) {
+// 		// IE 11 (or newer) => return version number
+// 		var rv = ua.indexOf("rv:");
+// 		return parseInt(ua.substring(rv + 3, ua.indexOf(".", rv)), 10);
+// 	}
+
+// 	// other browser
+// 	return false;
+// }
+
+// Función que incrementa el contador

@@ -1,0 +1,56 @@
+.infotrabajo {
+	background-color: #000; /* Fondo negro para dar contraste */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	margin: 0;
+}
+
+.card {
+	background-color: #0a1a4a; /* Azul oscuro */
+	color: white;
+	padding: 20px;
+	width: 600px;
+	border-radius: 5px;
+}
+
+.label {
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	opacity: 0.8;
+}
+
+h1 {
+	font-size: 20px;
+	margin: 5px 0 10px;
+	font-weight: bold;
+}
+
+.author {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.highlight {
+	font-weight: bold;
+}
+
+.source {
+	font-size: 14px;
+	opacity: 0.9;
+}
+
+hr {
+	border: 0;
+	height: 1px;
+	background: white;
+	margin: 10px 0;
+	opacity: 0.5;
+}
+
+.award {
+	font-size: 12px;
+	opacity: 0.8;
+}
