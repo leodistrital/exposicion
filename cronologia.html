@@ -1,39 +1,33 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<title>Simón Bolívar</title>
-		<link
-			href="http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300"
-			rel="stylesheet"
-			type="text/css"
-		/>
-		<link
-			href="http://fonts.googleapis.com/css?family=Josefin+Slab:300,400,600,700"
-			rel="stylesheet"
-			type="text/css"
-		/>
-		<link href="css/reset.css" rel="stylesheet" />
-		<link href="css/styles.css" rel="stylesheet" />
-		<link href="css/card.css" rel="stylesheet" />
-		<script src="js/jquery-1.8.3.min.js"></script>
-		<script src="js/prefixfree.min.js"></script>
-		<script src="js/modernizr.custom.61835.js"></script>
-		<script src="js/interface.js"></script>
-	</head>
 
-	<body>
-		<div class="wrapper">
-			<!--Menu iconos-->
-			<header>
-				<span class="title">Simon Bolivar</span>
+<head>
+	<meta charset="utf-8" />
+	<title>Simón Bolívar</title>
+	<link href="http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300" rel="stylesheet" type="text/css" />
+	<link href="http://fonts.googleapis.com/css?family=Josefin+Slab:300,400,600,700" rel="stylesheet" type="text/css" />
+	<link href="css/reset.css" rel="stylesheet" />
+	<link href="css/styles.css" rel="stylesheet" />
+	<link href="css/card.css" rel="stylesheet" />
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/prefixfree.min.js"></script>
+	<script src="js/modernizr.custom.61835.js"></script>
+	<script type="module" src="./js/interface.js"></script>
+</head>
+
+<body>
+	<div class="wrapper">
+		<!--Menu iconos-->
+		<header>
+			<span class="title">Simon Bolivar</span>
+			<div id="contenedorcard">
 				<div class="infotrabajo">
 					<div class="card">
 						<p class="label">TRABAJO GANADOR</p>
 						<h1>Y ahora, ¿cómo vamos a sobrevivir?</h1>
 						<p class="author">
 							Julio César González,
-							<span class="highlight">MATADOR</span>
+
 						</p>
 						<p class="source">El Tiempo</p>
 						<hr />
@@ -43,79 +37,56 @@
 						</p>
 					</div>
 				</div>
-			</header>
-			<!--Fin Menu iconos-->
-			<!--Contenido General-->
+			</div>
+		</header>
+		<!--Fin Menu iconos-->
+		<!--Contenido General-->
 
-			<div class="content">
-				<section class="left">
-					<div class="text_title">
-						<div class="header-text">
-							Trabajos ganadores<br />caricatura y fotoperiodismo
-						</div>
-						<h3><span class="aniossubtitulo">2024 - 1976</span></h3>
+		<div class="content">
+			<section class="left">
+				<div class="text_title">
+					<div class="header-text">
+						Trabajos ganadores<br />caricatura y fotoperiodismo
 					</div>
-					<div class="text_years">
-						<div class="text_left">
-							<h1><span>1805***</span></h1>
-							<h2>
-								<div class="subtitle edi">EDICIÓN 9</div>
+					<h3><span class="aniossubtitulo">2024 - 1976</span></h3>
+				</div>
+				<div class="text_years">
+					<div class="text_left">
+						<h1><span>1805***</span></h1>
+						<h2>
+							<div class="subtitle edi">EDICIÓN 9</div>
 
-								<!-- <span><big>
+							<!-- <span><big>
                                     <div class="subtitle">EDICIÓN 9</div>
                                     22+++
                                 </big></span> -->
-							</h2>
+						</h2>
+					</div>
+					<div class="opciones">
+						<p class="instructions">Elija una opción</p>
+						<div class="period-selector" id="period-selector">
+							<button class="period-button" data-index="6">
+								2024-2020
+							</button>
+							<button class="period-button" data-index="5">
+								2019-2010
+							</button>
+							<button class="period-button" data-index="4">
+								2009-2000
+							</button>
+							<button class="period-button " data-index="3">
+								1999-1990
+							</button>
+							<button class="period-button" data-index="2">
+								1989-1980
+							</button>
+							<button class="period-button " data-index="1">
+								1979-1976
+							</button>
 						</div>
-						<div class="opciones">
-							<p class="instructions">Elija una opción</p>
-							<div class="period-selector" id="period-selector">
-								<button
-									class="period-button"
-									data-index="6"
-									onclick="selecDecada(6)"
-								>
-									2024-2020
-								</button>
-								<button
-									class="period-button"
-									data-index="5"
-									onclick="selecDecada(5)"
-								>
-									2019-2010
-								</button>
-								<button
-									class="period-button"
-									data-index="4"
-									onclick="selecDecada(4)"
-								>
-									2009-2000
-								</button>
-								<button
-									class="period-button active"
-									data-index="3"
-									onclick="selecDecada(3)"
-								>
-									1999-1990
-								</button>
-								<button
-									class="period-button"
-									data-index="2"
-									onclick="selecDecada(2)"
-								>
-									1989-1980
-								</button>
-								<button
-									class="period-button"
-									data-index="1"
-									onclick="selecDecada(1)"
-								>
-									1979-1976
-								</button>
-							</div>
-							<p class="instructions">Elija un año</p>
-							<div class="year-selector" id="yearSelector">
-								<!-- <button class="year-button">1999</button>
+						<p class="instructions">Elija un año</p>
+						<div class="year-selector" id="yearSelector">
+							<!-- <button class="year-button">1999</button>
                             <button class="year-button">1998</button>
                             <button class="year-button">1997</button>
                             <button class="year-button">1996</button>
@@ -125,58 +96,54 @@
                             <button class="year-button">1992</button>
                             <button class="year-button">1992</button>
                             <button class="year-button active">1990</button> -->
-							</div>
-
-							<p class="instructions">
-								El Premio Nacional de Periodismo Simón Bolívar
-								no conserva<br />o publica los trabajos que han
-								sido parte de su archivo.
-							</p>
-
-							<div class="logo">
-								<img
-									src="logo-grupo-bolivar.png"
-									alt="Logo Grupo Bolívar"
-								/>
-							</div>
 						</div>
-						<div class="menu_years">
-							<a href="#" id="down_year">down</a
-							><!--
+
+						<p class="instructions">
+							El Premio Nacional de Periodismo Simón Bolívar
+							no conserva<br />o publica los trabajos que han
+							sido parte de su archivo.
+						</p>
+
+						<div class="logo">
+							<img src="logo-grupo-bolivar.png" alt="Logo Grupo Bolívar" />
+						</div>
+					</div>
+					<div class="menu_years">
+						<a href="#" id="down_year">down</a><!--
                      --><a href="#" id="up_year" class="b_up_inact">up</a>
-						</div>
 					</div>
-				</section>
-				<section class="right">
-					<div class="text_right">
-						<div class="desc">
-							<p>
-								Lorem Ipsum is simply dummy text of the printing
-								and typesetting industry. Lorem Ipsum has
-							</p>
-						</div>
+				</div>
+			</section>
+			<section class="right">
+				<div class="text_right">
+					<div class="desc">
+						<p>
+							Lorem Ipsum is simply dummy text of the printing
+							and typesetting industry. Lorem Ipsum has
+						</p>
 					</div>
-					<!--Imagen y color-->
-					<div class="color"></div>
-					<div class="textura"></div>
-					<div class="image" style="background-image: none;"></div>
-					<!--Fin Imagen y color-->
-					<!--Botones slide left y right-->
-					<a href="#" id="left">left</a>
-					<a href="#" id="right">right</a
-					><!--FIn Botones slide left y right-->
-					<!-- Contenedor de puntos indicadores -->
-					<div class="dots-container">
-						<!-- Los puntos se generan dinámicamente con jQuery -->
-						<div class="dot"></div>
-						<div class="dot active"></div>
-						<div class="dot"></div>
-					</div>
-					<a href="#" id="only_image">ocultar texto</a>
-				</section>
-			</div>
-			<!--Fin Contenido General-->
-			<!--Overlay-->
+				</div>
+				<!--Imagen y color-->
+				<div class="color"></div>
+				<div class="textura"></div>
+				<div class="image" style="background-image: none;"></div>
+				<!--Fin Imagen y color-->
+				<!--Botones slide left y right-->
+				<a href="#" id="left">left</a>
+				<a href="#" id="right">right</a><!--FIn Botones slide left y right-->
+				<!-- Contenedor de puntos indicadores -->
+				<div class="dots-container">
+					<!-- Los puntos se generan dinámicamente con jQuery -->
+					<div class="dot"></div>
+					<div class="dot active"></div>
+					<div class="dot"></div>
+				</div>
+				<a href="#" id="only_image">ocultar texto</a>
+			</section>
 		</div>
-	</body>
+		<!--Fin Contenido General-->
+		<!--Overlay-->
+	</div>
+</body>
+
 </html>

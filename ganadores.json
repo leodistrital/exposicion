@@ -1,7 +1,26 @@
 {
     "ganadores": [
         {
+            "codigo": "1977-JP-FP-01",
+            "orden": 1,
             "decada": 1,
+            "edicion": 2,
+            "anio": 1977,
+            "nombreganador": "Juan Pérez",
+            "categoria": "Fotoperiodismo",
+            "trabajo": "Incendio en el cerro",
+            "medio": "Revista Semana",
+            "imagenes": [
+                "https://premiosimonbolivar.com/trabajos/1680729763.jpg",
+                "https://placehold.co/800?text=Imagen+2"
+            ],
+            "comentario": "Esta fotografía documenta de manera directa pero también metafórica los voraces incendios en la capital."
+        },
+        {
+            "codigo": "1978-JP-FP-02",
+            "orden": 2,
+            "decada": 1,
+            "edicion": 3,
             "anio": 1978,
             "nombreganador": "Juan Pérez",
             "categoria": "Fotoperiodismo",
@@ -14,7 +33,10 @@
             "comentario": "Esta fotografía documenta de manera directa pero también metafórica los voraces incendios en la capital."
         },
         {
+            "codigo": "1978-AG-R-03",
+            "orden": 3,
             "decada": 1,
+            "edicion": 3,
             "anio": 1978,
             "nombreganador": "Ana Gómez",
             "categoria": "Reportaje",
@@ -27,7 +49,10 @@
             "comentario": "Un reportaje que captura la esencia de la vida en la selva amazónica, mostrando la relación entre los habitantes y su entorno natural."
         },
         {
+            "codigo": "1978-LM-D-04",
+            "orden": 4,
             "decada": 1,
+            "edicion": 3,
             "anio": 1978,
             "nombreganador": "Luis Martínez",
             "categoria": "Documental",
@@ -40,27 +65,33 @@
             "comentario": "Este documental explora la lucha de comunidades rurales por acceso al agua potable, destacando la importancia de este recurso vital."
         },
         {
+            "codigo": "1979-ML-FN-05",
+            "orden": 5,
             "decada": 1,
+            "edicion": 4,
             "anio": 1979,
             "nombreganador": "María López",
             "categoria": "Fotografía de Naturaleza",
             "trabajo": "Paisajes del norte",
             "medio": "Revista Geográfica",
             "imagenes": [
-                "https://placehold.co/800?text=Imagen+7",
+                "https://www.las2orillas.co/wp-content/uploads/2022/11/Fiscalia-Real.png",
                 "https://placehold.co/800?text=Imagen+8"
             ],
             "comentario": "Una colección de imágenes que capturan la belleza natural de los paisajes del norte del país, con un enfoque en la conservación ambiental."
         },
         {
+            "codigo": "1979-JL-C-06",
+            "orden": 6,
             "decada": 1,
+            "edicion": 4,
             "anio": 1979,
             "nombreganador": "jhon Doe López",
             "categoria": "Caricatura",
             "trabajo": "caricatura uno",
             "medio": "Revista ",
             "imagenes": [
-                "https://placehold.co/800?text=Imagen+ caricatura 1 ",
+                "https://www.las2orillas.co/wp-content/uploads/2022/11/Fiscalia-Real.png",
                 "https://placehold.co/800?text=Imagen+caricatura 2 ",
                 "https://placehold.co/800?text=Imagen+caricatura 3 ",
                 "https://placehold.co/800?text=Imagen+caricatura 4 "
@@ -68,7 +99,10 @@
             "comentario": "Una colección de imágenes que capturan la belleza natural de los paisajes del norte del país, con un enfoque en la conservación ambiental."
         },
         {
+            "codigo": "1979-LC-FR-07",
+            "orden": 7,
             "decada": 1,
+            "edicion": 50,
             "anio": 1979,
             "nombreganador": "Leonardo Cortes",
             "categoria": "Fotoreportaje",
@@ -83,7 +117,10 @@
             "comentario": "Una colección de imágenes que capturan la belleza natural de los paisajes del norte del país, con un enfoque en la conservación ambiental."
         },
         {
+            "codigo": "1980-CR-PI-08",
+            "orden": 8,
             "decada": 2,
+            "edicion": 50,
             "anio": 1980,
             "nombreganador": "Carlos Rodríguez",
             "categoria": "Periodismo de Investigación",
@@ -96,7 +133,10 @@
             "comentario": "Una investigación profunda sobre los casos de corrupción en el sistema de salud, revelando la necesidad de reformas y transparencia."
         },
         {
+            "codigo": "1982-LS-FD-09",
+            "orden": 9,
             "decada": 2,
+            "edicion": 50,
             "anio": 1982,
             "nombreganador": "Laura Sánchez",
             "categoria": "Fotografía Deportiva",
@@ -109,7 +149,10 @@
             "comentario": "Captura el momento decisivo en el campeonato de fútbol, mostrando la emoción y la intensidad del deporte."
         },
         {
+            "codigo": "1983-PR-FU-10",
+            "orden": 10,
             "decada": 2,
+            "edicion": 50,
             "anio": 1983,
             "nombreganador": "Pedro Ramírez",
             "categoria": "Fotografía Urbana",
@@ -119,46 +162,7 @@
                 "https://placehold.co/800?text=Imagen+13",
                 "https://placehold.co/800?text=Imagen+14"
             ],
-            "comentario": "Una serie de fotografías que retratan la vida cotidiana en la ciudad, destacando la diversidad y el dinamismo urbano."
-        },
-        {
-            "decada": 3,
-            "anio": 2010,
-            "nombreganador": "Sofía Fernández",
-            "categoria": "Fotografía Social",
-            "trabajo": "Rostros de la comunidad",
-            "medio": "Revista Social",
-            "imagenes": [
-                "https://placehold.co/800?text=Imagen+15",
-                "https://placehold.co/800?text=Imagen+16"
-            ],
-            "comentario": "Un proyecto fotográfico que pone en primer plano a los miembros de una comunidad, mostrando sus historias y desafíos."
-        },
-        {
-            "decada": 3,
-            "anio": 2016,
-            "nombreganador": "Ricardo Torres",
-            "categoria": "Fotografía de Viajes",
-            "trabajo": "Aventuras en el sur",
-            "medio": "Revista Viajera",
-            "imagenes": [
-                "https://placehold.co/800?text=Imagen+17",
-                "https://placehold.co/800?text=Imagen+18"
-            ],
-            "comentario": "Una colección de imágenes que documentan las aventuras y paisajes del sur del país, invitando a explorar nuevos horizontes."
-        },
-        {
-            "decada": 3,
-            "anio": 2022,
-            "nombreganador": "Victoria Mendoza",
-            "categoria": "Fotografía Artística",
-            "trabajo": "Colores de la vida",
-            "medio": "Revista Arte",
-            "imagenes": [
-                "https://placehold.co/800?text=Imagen+19",
-                "https://placehold.co/800?text=Imagen+20"
-            ],
-            "comentario": "Una serie de fotografías artísticas que exploran el uso del color y la composición para transmitir emociones y conceptos abstractos."
+            "comentario": "Una serie de fotografías que retratan la vida cotidiana en la ciudad, destacando la diversidad y el ritmo urbano."
         }
     ]
 }

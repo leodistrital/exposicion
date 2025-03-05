@@ -1,43 +1,33 @@
-let contador = 0;
+import { crearCard } from "./buildComponentes.js";
+
+// let contador = 0;
 let trabajo = 0;
-let decada = 0;
+let decadaGlobal = 0;
+let anioGlobal = 0;
 let indextrabajo = 0;
 let jsonData = [];
 let ganadoresDATA = [];
 let aniosDATA = [];
+let ordenGlobal = 0;
 
-// Cargar el archivo JSON desde una URL al iniciar la página
-
-fetch("ganadores.json")
-	.then((response) => response.json())
-	.then((data) => {
+async function cargarDatos() {
+	try {
+		const response = await fetch("ganadores.json");
+		const data = await response.json();
+		// console.log("Datos JSON cargados:", data);
 		jsonData = data;
-		console.log("Datos JSON cargados:", jsonData);
-	})
-	.catch((error) => console.error("Error al cargar el archivo JSON:", error));
-
-// Función para incrementar el contador
-function incrementarContador() {
-	contador++; // Modificación de la variable global
-	$("#resultado").text(`Contador incrementado: ${contador}`);
-	console.log(contador);
+		return data; // Puedes retornar los datos si los necesitas fuera de la función
+	} catch (error) {
+		console.error("Error al cargar el archivo JSON:", error);
+		return null; // O manejar el error como prefieras
+	}
 }
 
-// Función para decrementar el contador
-function decrementarContador() {
-	contador--; // Modificación de la variable global
-	$("#resultado").text(`Contador decrementado: ${contador}`);
-}
-
-// Función para mostrar el valor actual del contador
-function mostrarContador() {
-	$("#resultado").text(`Valor actual del contador: ${contador}`);
-}
-
+// Mueve la definición de selecDecada aquí
 function selecDecada(decada) {
 	// console.log(decada);
 	ganadoresDATA = filtrarPorPropiedad(jsonData, "decada", decada);
-	// console.log(ganadoresDATA);
+	console.log(ganadoresDATA);
 	aniosDATA = ganadoresDATA.map((item) => {
 		// console.log(item["anio"]);
 		return item["anio"];
@@ -46,6 +36,23 @@ function selecDecada(decada) {
 	// console.log(aniosDATA);
 	actualizarAnios(aniosDATA);
 	actualizarActivo(decada, "period-selector", "period-button");
+	let ganadoresDecada = filtrarPorPropiedad(jsonData, "decada", decada);
+	// console.log({ ganadoresDecada });
+	SliderInit(ganadoresDecada);
+}
+
+function iniciarBotonDecada() {
+	const botonesDecada = document.querySelectorAll(".period-button");
+	// console.log(botonesDecada);
+	// Adjuntar el evento click a cada botón
+	botonesDecada.forEach((boton) => {
+		boton.addEventListener("click", function () {
+			// Obtener el valor de data-index
+			const index = parseInt(this.dataset.index);
+			// Llamar a la función selecDecada con el índice
+			selecDecada(index);
+		});
+	});
 }
 
 function actualizarAnios(anios) {
@@ -63,15 +70,117 @@ function actualizarAnios(anios) {
 		button.dataset.index = anio;
 		// Añadir controlador de eventos para manejar clics
 		button.addEventListener("click", () => {
-			console.log(`Año seleccionado: ${anio}`);
+			// console.log(`Año seleccionado: ${anio}`);
 			actualizarActivo(anio, "yearSelector", "year-button");
-			ganadoresporanio = filtrarPorPropiedad(jsonData, "anio", anio);
-			console.log({ ganadoresporanio });
+			let ganadoresporanio = filtrarPorPropiedad(jsonData, "anio", anio);
+			// console.log( ganadoresporanio[0] });
+			SliderInit(ganadoresporanio);
 			// Aquí puedes agregar cualquier lógica adicional que necesites
 		});
 		selector.appendChild(button);
 	});
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+	cargarDatos().then((jsonData) => {
+		if (jsonData) {
+			// Ahora puedes usar jsonData aquí
+			console.log("Datos disponibles después de cargar:", jsonData);
+			iniciarBotonDecada();
+			// console.log(jsonData);
+			const {
+				anio,
+				edicion,
+				imagenes,
+				orden,
+				trabajo,
+				nombreganador,
+				medio,
+				categoria,
+				comentario,
+			} = jsonData.ganadores[0];
+			ordenGlobal = orden;
+			slide_right(
+				"obstaculos",
+				"1840",
+				"enero",
+				"10",
+				"18",
+				comentario,
+				imagenes[0]
+			);
+
+			crearCard(trabajo, nombreganador, medio, categoria);
+			const temporizador = setInterval(cambiosTrabajoImagen, 10000);
+		}
+	});
+});
+
+function cambiosTrabajoImagen() {
+	console.log("¡Han pasado 5 segundos!", ordenGlobal);
+	ganadoresDATA = filtrarPorPropiedad(jsonData, "orden", ordenGlobal + 1);
+
+	if (ganadoresDATA.length === 0) {
+		ordenGlobal = 0;
+	}
+	ganadoresDATA = filtrarPorPropiedad(jsonData, "orden", ordenGlobal + 1);
+
+	console.log(ganadoresDATA);
+
+	const {
+		anio,
+		edicion,
+		imagenes,
+		orden,
+		trabajo,
+		nombreganador,
+		medio,
+		categoria,
+		comentario,
+	} = ganadoresDATA[0];
+	ordenGlobal = orden;
+
+	slide_right(
+		"obstaculos",
+		"1840",
+		"enero",
+		"10",
+		"18",
+		comentario,
+		imagenes[0]
+	);
+	crearCard(trabajo, nombreganador, medio, categoria);
+	console.log(ordenGlobal);
+}
+
+function SliderInit(Data) {
+	// console.log(Data[0]);
+	const {
+		anio,
+		edicion,
+		imagenes,
+		orden,
+		trabajo,
+		nombreganador,
+		medio,
+		categoria,
+		comentario,
+	} = Data[0];
+	ordenGlobal = orden;
+	datos_inicio(
+		"retos",
+		anio,
+		"mayo",
+		"26",
+		"EDICIÓN " + edicion,
+		comentario,
+		imagenes[0]
+	);
+	crearCard(trabajo, nombreganador, medio, categoria);
+	console.log({ ordenGlobal });
+}
+
+// Función para incrementar el contador
 
 function actualizarActivo(index, padre, nodo) {
 	// console.log({ index, padre, nodo });
@@ -85,22 +194,6 @@ function actualizarActivo(index, padre, nodo) {
 	boton.classList.add("active");
 }
 
-// function incrementarContador() {
-// 	contador++; // Acceso y modificación de la variable global
-// 	console.log(`Contador incrementado: ${contador}`);
-// }
-
-// // Función que decrementa el contador
-// function decrementarContador() {
-// 	contador--; // Acceso y modificación de la variable global
-// 	console.log(`Contador decrementado: ${contador}`);
-// }
-
-// // Función que muestra el valor actual del contador
-// function mostrarContador() {
-// 	console.log(`Valor actual del contador: ${contador}`);
-// }
-
 function filtrarPorPropiedad(jsonData = jsonData, propiedad, valor) {
 	// console.log(jsonData);
 	return jsonData.ganadores.filter((item) => {
@@ -110,21 +203,6 @@ function filtrarPorPropiedad(jsonData = jsonData, propiedad, valor) {
 }
 
 $(document).ready(function (e) {
-	console.log(contador); // Acceso a la variable global
-
-	//cargar los primero datos
-	datos_inicio(
-		"retos",
-		"1985",
-		"mayo",
-		"26",
-		"EDICIÓN 9",
-		"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has  been the industry's standard                            dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled  it to make a type specimen   book. It has survived not only five centuries, but also the leap into electronic                             typesetting, remaining essentially    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing                             Lorem Ipsum passages, and more                             recently with desktop publishing software like  ldus PageMaker including versions of Lorem                             Ipsum.",
-		"https://placehold.co/800?text=Imagen+3"
-	);
-
-	/*Click arriba, abajo, izquierda, derecha, menu categoria*/
-
 	//click arriba
 	$("#down_year").on("click", function (e) {
 		e.preventDefault();
@@ -163,7 +241,6 @@ $(document).ready(function (e) {
 			"texto prueba tres",
 			"https://placehold.co/800?text=Imagen+1"
 		);
-		incrementarContador();
 	});
 	//click derecha
 	$("#right").on("click", function (e) {
@@ -208,28 +285,18 @@ $(document).ready(function (e) {
 	centrar(".right", ".text_right");
 
 	//Mostrar Quitar instrucciones
-	instructions_in();
+	// instructions_in();
 	// $(".overlay").on("click", function () {
-	instructions_out();
+	// instructions_out();
 	// });
 });
+
 $(window).resize(function (e) {
 	/*centrar verticalmente*/
 	centrar(".wrapper.home", ".wrapper.home > section");
 	centrar(".text_years", ".text_left");
 	centrar(".right", ".text_right");
 });
-// $(window).load(function (e) {
-// 	//Detectar version internet explorer
-// 	var detect = detectIE();
-// 	if (detect != false) {
-// 		if (detect < 10) {
-// 			alert(
-// 				"Para una correcta visualización de la página debe usar Internet Explorer 10 o superior, u otro navegador."
-// 			);
-// 		}
-// 	}
-// });
 
 /*funcion para cargar los primeros datos*/
 function datos_inicio(categoria, anio, mes, dia, edad, texto, img) {
@@ -241,11 +308,14 @@ function datos_inicio(categoria, anio, mes, dia, edad, texto, img) {
 		i_color = ".color",
 		i_img = ".image",
 		i_textura = ".textura",
-		i_nom_cate = ".text_left h3 span";
-	icon_category(categoria);
+		i_nom_cate = ".text_left h3 span",
+		i_edicion = ".subtitle";
+	// console.log($(i_edicion));
+	// icon_category(categoria);
 	$(i_anio).html(anio);
 	$(i_mes).html(mes);
 	$(i_dia).html(dia);
+	$(i_edicion).html(edad);
 	$(i_edad).html("<big>" + edad + "</big><br>a&ntilde;os");
 	$(i_texto + " p").html(texto);
 	$(i_nom_cate).html(categoria);
@@ -260,26 +330,6 @@ function datos_inicio(categoria, anio, mes, dia, edad, texto, img) {
 	}
 }
 
-/*funcion mostrar ocultar instrucciones*/
-function instructions_in() {
-	$(".overlay").addClass("visible");
-}
-function instructions_out() {
-	$(".overlay").removeClass("visible");
-	$(".overlay").css("transition", "background-color 0.5s ease 1.2s");
-	$(".overlay").css({ display: "none" });
-	// setTimeout(function () {
-	// 	$(".overlay").css({ display: "none" });
-	// }, 1500);
-}
-
-/*funcion seleccionar item menu*/
-// function menu_item(e, obj) {
-// 	e.preventDefault();
-// 	$("header a").removeClass("activo");
-// 	$(obj).addClass("activo");
-// }
-
 /*funcion centrar verticalmente*/
 function centrar(parent, elem) {
 	var h_parent = $(parent).height(),
@@ -292,28 +342,6 @@ function centrar(parent, elem) {
 		$(elem).css({ top: total + "px", transition: "top 0.5s ease" });
 	}
 }
-
-/*funcion para abrir menu años*/
-// function open_years(e) {
-// 	e.preventDefault();
-// 	if ($("#open_years").hasClass("close")) {
-// 		$("#years").animate({ width: "0%" });
-// 		$(".text_years").animate(
-// 			{ width: "100%", marginLeft: "0" },
-// 			{ queue: false }
-// 		);
-// 		$("#years").removeClass("close");
-// 		$("#open_years").removeClass("close");
-// 	} else {
-// 		$("#years").animate({ width: "20%" });
-// 		$(".text_years").animate(
-// 			{ width: "80%", marginLeft: "20%" },
-// 			{ queue: false }
-// 		);
-// 		$("#years").addClass("close");
-// 		$("#open_years").addClass("close");
-// 	}
-// }
 
 /*funcion mostrar solo imagen*/
 function only_image(e) {
@@ -357,7 +385,8 @@ function slide_down(categoria, anio, mes, dia, edad, texto, img) {
 		i_color = ".color",
 		i_img = ".image",
 		i_textura = ".textura",
-		i_nom_cate = ".text_left h3 span";
+		i_nom_cate = ".text_left h3 span",
+		i_edicion = ".subtitle";
 	$(".text_right").css({
 		opacity: 1,
 		"z-index": 15,
@@ -371,23 +400,43 @@ function slide_down(categoria, anio, mes, dia, edad, texto, img) {
 	$(".text_right,#only_image").removeClass("visible");
 	$("#only_image").html("ocultar texto");
 	/*Ocultar items*/
-	$(i_anio + "," + i_mes + "," + i_dia + "," + i_edad + "," + i_nom_cate).css(
-		{
-			transform: "translate(0px,-100%)",
-			visibility: "hidden",
-			transition: "transform 0.5s ease, visibility 0s linear 0.5s",
-		}
-	);
+	$(
+		i_anio +
+			"," +
+			i_mes +
+			"," +
+			i_dia +
+			"," +
+			i_edad +
+			"," +
+			i_nom_cate +
+			"," +
+			i_edicion
+	).css({
+		transform: "translate(0px,-100%)",
+		visibility: "hidden",
+		transition: "transform 0.5s ease, visibility 0s linear 0.5s",
+	});
 	$(i_color + "," + i_img + "," + i_textura).css({
 		right: "100%",
 		transition: "right 1s ease, background-color 0s linear 1s",
 	});
-	icon_category(categoria);
+	// icon_category(categoria);
 	$(i_texto).animate({ height: "toggle" }, 500);
 	/*Cargar datos en items*/
 	setTimeout(function () {
 		$(
-			i_anio + "," + i_mes + "," + i_dia + "," + i_edad + "," + i_nom_cate
+			i_anio +
+				"," +
+				i_mes +
+				"," +
+				i_dia +
+				"," +
+				i_edad +
+				"," +
+				i_nom_cate +
+				"," +
+				i_edicion
 		).css({
 			transform: "translate(0px,100%)",
 			transition: "transform 0s linear",
@@ -395,6 +444,7 @@ function slide_down(categoria, anio, mes, dia, edad, texto, img) {
 		$(i_anio).html(anio);
 		$(i_mes).html(mes);
 		$(i_dia).html(dia);
+		$(i_edicion).html(edad);
 		$(i_edad).html("<big>" + edad + "</big><br>a&ntilde;os");
 		$(i_texto + " p").html(texto);
 		$(i_nom_cate).html(categoria);
@@ -419,7 +469,17 @@ function slide_down(categoria, anio, mes, dia, edad, texto, img) {
 	/*Mostrar items*/
 	setTimeout(function () {
 		$(
-			i_anio + "," + i_mes + "," + i_dia + "," + i_edad + "," + i_nom_cate
+			i_anio +
+				"," +
+				i_mes +
+				"," +
+				i_dia +
+				"," +
+				i_edad +
+				"," +
+				i_nom_cate +
+				"," +
+				i_edicion
 		).css({
 			transform: "translate(0px,0%)",
 			visibility: "visible",
@@ -435,8 +495,6 @@ function slide_down(categoria, anio, mes, dia, edad, texto, img) {
 			opacity: 1,
 			transition: "opacity 0.8s ease-in",
 		});
-		// centrar(".text_years", ".text_left");
-		// centrar(".right", ".text_right");
 	}, 1050);
 }
 
@@ -721,45 +779,4 @@ function icon_category(category) {
 		"retos afectos triunfos obstaculos viajes contexto"
 	);
 	$(i_left + "," + i_right).addClass(category);
-
-	// $("header a").removeClass("activo");
-	// if (category == "retos") {
-	// 	$("#retos").addClass("activo");
-	// }
-	// if (category == "afectos") {
-	// 	$("#afectos").addClass("activo");
-	// }
-	// if (category == "triunfos") {
-	// 	$("#triunfos").addClass("activo");
-	// }
-	// if (category == "obstaculos") {
-	// 	$("#obstaculos").addClass("activo");
-	// }
-	// if (category == "viajes") {
-	// 	$("#viajes").addClass("activo");
-	// }
-	// if (category == "contexto") {
-	// 	$("#contexto").addClass("activo");
-	// }
 }
-
-/*detectar internet explorer*/
-// function detectIE() {
-// 	var ua = window.navigator.userAgent;
-// 	var msie = ua.indexOf("MSIE ");
-// 	var trident = ua.indexOf("Trident/");
-// 	if (msie > 0) {
-// 		// IE 10 or older => return version number
-// 		return parseInt(ua.substring(msie + 5, ua.indexOf(".", msie)), 10);
-// 	}
-// 	if (trident > 0) {
-// 		// IE 11 (or newer) => return version number
-// 		var rv = ua.indexOf("rv:");
-// 		return parseInt(ua.substring(rv + 3, ua.indexOf(".", rv)), 10);
-// 	}
-
-// 	// other browser
-// 	return false;
-// }
-
-// Función que incrementa el contador
